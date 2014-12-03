@@ -7,8 +7,8 @@ $session_timeout = 0;
 $session_name = "TEST123";
 
 // File untum simpan session. Jika tidak mahu gunakan default.
-//$session_path = "C:/xampp/htdocs/test/sessions";
-$session_path = "/tmp/sessions";
+$session_path = "C:/xampp/htdocs/test/sessions";
+//$session_path = "/tmp/sessions";
 
 // Cookie hanya akan set untuk https sahaja. Tidak digunakan dalam banyak kes, cuma sebagai
 // rujukan.
