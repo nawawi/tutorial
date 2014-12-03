@@ -41,6 +41,8 @@ $result = $dblink->query($sql);
 $page_pagging = false;
 $rowpage = 5;
 $data_total  = $result->num_rows;
+$page_first = $page_next = $page_prev = $page_last = 0;
+
 if ( is_object($result) && $data_total > $rowpage ) { 
     $page_record = ( isset($_GET['page_record']) ? $_GET['page_record'] : 0 );
     $max_row = ( isset($_GET['max_row']) ? $_GET['max_row'] : $rowpage );

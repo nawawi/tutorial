@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE);
 
 // Session timeout, setting dalam saat. nilai 0 = tamat bila tutup browser.
 $session_timeout = 0;
