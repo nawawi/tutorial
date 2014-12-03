@@ -1,5 +1,10 @@
 <?php
 // check parameter
+include_once("./functions-session.php");
+if ( !_session_check() ) {
+    echo "Sila <a href='login.php'>Login</a>!!!<br>";
+    exit;
+}
 
 $error_message = "";
 if ( !isset($_POST['password']) || $_POST['password'] == '' ) {

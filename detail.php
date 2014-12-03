@@ -1,4 +1,10 @@
 <?php
+include_once("./functions-session.php");
+if ( !_session_check() ) {
+    echo "Sila <a href='login.php'>Login</a>!!!<br>";
+    exit;
+}
+
 // check parameter
 if ( !isset($_GET['id']) || $_GET['id'] == '' || (int)$_GET['id'] <= 0 ) {
     echo "Salah parameter!!";
@@ -90,6 +96,10 @@ if ( !is_object($result) ) {
 ?>
 <br>
 <a href='view.php'>Home</a> / <a href='addnew.php'>Add New</a> / <a href='edit.php?id=<?echo $_GET['id'];?>'>Edit</a> / <a href='delete.php?id=<?echo $_GET['id'];?>'>Delete</a>
+
+<br><br>
+<a href='logout.php'>Logout</a>
+
 </body>
 </html>
 

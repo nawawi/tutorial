@@ -79,14 +79,17 @@ $dblink->query($sql);
 //print_r($result);
 //echo "</pre>";
 
+// execute function _session_login untuk memulakan session
 _session_login($data_last);
+
 if ( !_session_check() ) {
     echo "Set session tidak berjaya!!!<br>";
 } else {
     echo "Set session berjaya!!!<br>";
-    echo "<pre>";
-    $data = _session_data();
-    print_r($data);
+    echo "<script>setTimeout( function() { self.location.href = 'view.php'; }, 1000 ); </script>";
+    //echo "<pre>";
+    //$data = _session_data();
+    //print_r($data);
 }
 
 

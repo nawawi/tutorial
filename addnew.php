@@ -1,3 +1,11 @@
+<?php
+include_once("./functions-session.php");
+if ( !_session_check() ) {
+    echo "Sila <a href='login.php'>Login</a>!!!<br>";
+    exit;
+}
+?>
+
 <html>
 <head>
 <title>Database</title>
@@ -47,6 +55,10 @@ td {
 
 <br>
 <a href='view.php'>Home</a>
+
+<br><br>
+<a href='logout.php'>Logout</a>
+
 </body>
 </html>
 

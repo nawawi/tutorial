@@ -1,4 +1,10 @@
 <?php
+include_once("./functions-session.php");
+if ( !_session_check() ) {
+    echo "Sila <a href='login.php'>Login</a>!!!<br>";
+    exit;
+}
+
 // check parameter
 if ( !isset($_GET['id']) || $_GET['id'] == '' || (int)$_GET['id'] <= 0 ) {
     echo "Salah parameter!!";

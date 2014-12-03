@@ -1,4 +1,10 @@
 <?php
+include_once("./functions-session.php");
+if ( !_session_check() ) {
+    echo "Sila <a href='login.php'>Login</a>!!!<br>";
+    exit;
+}
+
 $dbhost = "localhost";
 $dbuser = "app";
 $dbpassword = "app";
@@ -116,7 +122,8 @@ if ( is_object($result) ) {
 ?>
 </table>
 <!--- / end display data -->
-
+<br><br>
+<a href='logout.php'>Logout</a>
 </body>
 </html>
 
