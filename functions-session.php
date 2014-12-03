@@ -1,12 +1,21 @@
 <?php
 
-// Session
+// Session timeout, setting dalam saat. nilai 0 = tamat bila tutup browser.
 $session_timeout = 0;
+
+// Nama session
 $session_name = "TEST123";
-$session_path = "C:/xampp/htdocs/test/sessions";
-//$session_path = "/tmp/sessions";
+
+// File untum simpan session. Jika tidak mahu gunakan default.
+//$session_path = "C:/xampp/htdocs/test/sessions";
+$session_path = "/tmp/sessions";
+
+// Cookie hanya akan set untuk https sahaja. Tidak digunakan dalam banyak kes, cuma sebagai
+// rujukan.
 $session_cookie_secure = false;
 
+
+// function untuk menetapkan setting untuk session
 function _session_init() {
     if ( $GLOBALS['session_timeout'] == 0 ) {
         ini_set("session.cache_expire", 600);
@@ -28,11 +37,13 @@ function _session_init() {
     }
 }
 
+// function untuk memulakan session. Akan digunakan pada setiap page.
 function _session_start() {
     _session_init();
     session_start();
 }
 
+// function untuk menyimpan data login kedalan session
 function _session_login($data_last) {
     _session_start();
 
@@ -43,6 +54,7 @@ function _session_login($data_last) {
     }
 }
 
+// function untuk periksan session
 function _session_check() {
     _session_start();
     $session_name = $GLOBALS['session_name'];
@@ -52,6 +64,7 @@ function _session_check() {
     return false;
 }
 
+// function untuk mendapatkan data session
 function _session_data() {
     if ( _session_check() ) {
         $session_name = $GLOBALS['session_name'];
@@ -60,6 +73,7 @@ function _session_data() {
     return null;
 }
 
+// function untuk mematikan session
 function _session_logout() {
     _session_start();
     @unlink(session_save_path()."/sess_".session_id());
