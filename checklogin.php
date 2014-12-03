@@ -1,4 +1,6 @@
 <?php
+include_once("./functions-session.php");
+
 // check parameter
 if ( !isset($_POST['login']) || $_POST['login'] == '' || !isset($_POST['password']) || $_POST['password'] == '' ) {
     echo "Salah parameter!!";
@@ -77,49 +79,15 @@ $dblink->query($sql);
 //print_r($result);
 //echo "</pre>";
 
-$session_timeout = 0;
-$session_name = "TEST123";
-//$session_path = "C:/xampp/htdocs/test/sessions";
-$session_path = "/tmp/sessions";
-$session_cookie_secure = false;
-
-if ( $session_timeout == 0 ) {
-    ini_set("session.cache_expire", 600);
-    ini_set("session.gc_maxlifetime", 36000);
-    ini_set("session.cookie_lifetime", 36000);
+_session_login($data_last);
+if ( !_session_check() ) {
+    echo "Set session tidak berjaya!!!<br>";
+} else {
+    echo "Set session berjaya!!!<br>";
+    echo "<pre>";
+    $data = _session_data();
+    print_r($data);
 }
-
-if ( isset($session_name) && $session_name != '' ) {
-    ini_set('session.name', $session_name);
-}
-
-if ( isset($session_path) && is_dir($session_path) ) {
-    session_save_path($session_path);
-    ini_set('session.gc_probability', 1);
-}
-
-if ( $session_cookie_secure ) {
-    ini_set('session.cookie_secure','1');
-}
-
-// perlu letak setiap page
-session_start();
-
-// save data dari database ke session
-foreach( $data_last as $param => $value ) {
-    $_SESSION[$session_name][$param] = $value;
-}
-
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
-
-// clean session
-/*@unlink(session_save_path()."/sess_".session_id());
-@session_unset();
-@session_destroy();
-@session_write_close();*/
-
 
 
 
