@@ -17,11 +17,11 @@ if ( !is_object($dblink) ) {
 }
 
 // check login dan password
-//$sql = "select * from users where login='{$_POST['login']}' and password='".md5($_POST['password'])."' ";
+$sql = "select * from users where login='{$_POST['login']}' and password='".md5($_POST['password'])."' ";
 
 // kalau combine table. masalah, data empty jika salah satu table empty.
-$sql = "select users.*,users_data.* from users,users_data where users.login='{$_POST['login']}' ";
-$sql .= "and users.password='".md5($_POST['password'])."' ";
+//$sql = "select users.*,users_data.* from users,users_data where users.login='{$_POST['login']}' ";
+//$sql .= "and users.password='".md5($_POST['password'])."' ";
 
 $result = $dblink->query($sql);
 if ( is_object($result) && $result->num_rows <= 0 ) {
@@ -44,10 +44,29 @@ if ( is_object($result) ) {
     }
 }
 
+// dapatkan data dari table kedua
+if ( !empty($data) ) {
+    $sql = "select * from users_data where users_id='{$data['id']}' ";
+    $result = $dblink->query($sql);
+    $data2 = array();
+    if ( is_object($result) ) {
+        while( $row = $result->fetch_object() ) {
+            $data2['mobile'] = $row->mobile;
+        }
+    }
+}
+
+// combine kan semua data
+$data_last = array();
+$data_last = array_merge($data, $data2);
+//echo "<pre>";
+//print_r($data_last);
+//echo "</pre>";
+
 // test data
-echo "<pre>";
-print_r($data);
-echo "</pre>";
+//echo "<pre>";
+//print_r($data);
+//echo "</pre>";
 
 // update last login
 $lastlogin = date('Y-m-d H:i:s');
