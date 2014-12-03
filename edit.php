@@ -110,7 +110,6 @@ if ( !is_object($result) ) {
 
 <br><br>
 <a href='logout.php'>Logout</a>
-
 </body>
 </html>
 

@@ -6,7 +6,7 @@ $session_timeout = 0;
 // Nama session
 $session_name = "TEST123";
 
-// File untum simpan session. Jika tidak mahu gunakan default.
+// File untuk simpan session. Jika tidak mahu gunakan default.
 $session_path = "C:/xampp/htdocs/test/sessions";
 //$session_path = "/tmp/sessions";
 
@@ -80,5 +80,12 @@ function _session_logout() {
     session_unset();
     session_destroy();
     session_write_close();
+}
+
+// function info pengguna
+function _info_login() {
+    $data = _session_data();
+    $lastlogin = date('d/M/Y h:i A', strtotime($data['lastlogin']) );
+    echo "<br><br>Login sebagai {$data['login']}, login terakhir pada {$lastlogin}<br>";
 }
 

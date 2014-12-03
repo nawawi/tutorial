@@ -124,6 +124,10 @@ if ( is_object($result) ) {
 <!--- / end display data -->
 <br><br>
 <a href='logout.php'>Logout</a>
+
+<?php
+_info_login();
+?>
 </body>
 </html>
 
