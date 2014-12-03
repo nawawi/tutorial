@@ -48,7 +48,8 @@ if ( is_object($result) && $result->num_rows > 0 ) {
 }
 
 // Execute query untuk update, akan return boolean TRUE or FALSE
-$sql = "update users set login='{$_POST['login']}',fullname='{$_POST['fullname']}'";
+$login = htmlspecialchars($_POST['login'], ENT_QUOTES, 'UTF-8', false);
+$sql = "update users set login='{$login}',fullname='{$_POST['fullname']}'";
 
 // jika password tidak empty, update password
 if ( isset($_POST['password']) && $_POST['password'] != '' ) {

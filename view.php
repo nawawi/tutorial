@@ -21,30 +21,68 @@ if ( !is_object($dblink) ) {
 print_r($dblink);
 echo "</pre>";*/
 
-
 // Query ke database
-$sql = "select * from users";
+$sql = "select * from users where 1";
 
 // search
 if ( isset($_GET['search']) && $_GET['search'] != '' ) {
     $field = ( isset($_GET['opt']) && $_GET['opt'] != '' ? $_GET['opt'] : "login" );
-    $sql .= " where `{$field}` like \"%{$_GET['search']}%\" ";
+    $sql .= " and `{$field}` like \"%{$_GET['search']}%\" ";
 }
 
 $result = $dblink->query($sql);
 
 // untuk debug
-/*echo "<pre>";
-print_r($result);
-echo "</pre>";*/
+//echo "<pre>";
+//print_r($result);
+//echo "</pre>";
 
-// keluarkan data
-/*while( $row = $result->fetch_object() ) {
-    echo "<pre>";
-    print_r($row);
-    echo "</pre>";
-}*/
+// pagging
+$page_pagging = false;
+$rowpage = 5;
+$data_total  = $result->num_rows;
+if ( is_object($result) && $data_total > $rowpage ) { 
+    $page_record = ( isset($_GET['page_record']) ? $_GET['page_record'] : 0 );
+    $max_row = ( isset($_GET['max_row']) ? $_GET['max_row'] : $rowpage );
+    $start_row = @($page_record * $max_row);
 
+    $sql .= " LIMIT $start_row, $max_row";
+    $result1 = $dblink->query($sql);
+    $result = $result1;
+
+    if ( isset($_GET['page_total']) ) {
+        $page_total = @ceil( $data_total / $max_row );
+    } else {
+         $page_total = 1;
+    }
+
+    if ( $page_total >= 1 ) {
+        $page_pagging = true;
+
+        if ( $page_record > 0 ) {
+            $page_first = 0;
+            $page_prev = max(0, $page_record - 1);
+        }
+
+        if ( $page_record < $page_total ) {
+            $page_next = min($page_total - 1, $page_record + 1);
+            $page_last = ( $page_total - 1 );
+        }
+    }
+    $pagging = "view.php?";
+    if ( isset($_GET['search']) ) {
+        $pagging .= "search={$_GET['search']}";
+    }
+    if ( isset($_GET['opt']) ) {
+        $pagging .= "&opt={$_GET['opt']}";
+    }
+    $pagging .= "&max_row={$max_row}&page_total={$page_total}";
+    
+    $pagging_first = "{$pagging}&page_record={$page_first}";
+    $pagging_next = "{$pagging}&page_record={$page_next}";
+    $pagging_prev = "{$pagging}&page_record={$page_prev}";
+    $pagging_last = "{$pagging}&page_record={$page_last}";
+}
 ?>
 
 <html>
@@ -117,6 +155,12 @@ if ( is_object($result) ) {
 
         echo "</td>";
         echo "</tr>";
+    }
+    if ( $page_pagging ) {
+        echo "<a href='{$pagging_first}'>First</a>&nbsp;&nbsp;";
+        echo "<a href='{$pagging_next}'>Next</a>&nbsp;&nbsp;";
+        echo "<a href='{$pagging_prev}'>Previous</a>&nbsp;&nbsp;";
+        echo "<a href='{$pagging_last}'>Last</a>";
     }
 }
 ?>
