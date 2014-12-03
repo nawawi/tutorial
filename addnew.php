@@ -8,7 +8,7 @@ if ( !_session_check() ) {
 
 <html>
 <head>
-<title>Database</title>
+<title>User Database</title>
 <style>
 table {
     width: 100%;
@@ -26,6 +26,11 @@ td {
 </style>
 </head>
 <body>
+<h1>Add New: User Database</h1>
+<hr>
+<a href='view.php'>Home</a>
+<br><br>
+
 <form action='save.php' method='post'>
 <table>
 <tr>
@@ -46,19 +51,21 @@ td {
 <th>Full Name</th>
 <td>
 <input type='text' name='fullname' value=''>
-<td>
+<t/d>
 </tr>
 
 </table>
-<input type='submit' value='Save'>
+<input type='submit' value='Save'> <input type='button' value='Cancel' onclick="self.location.href='view.php';">
 </form>
 
-<br>
-<a href='view.php'>Home</a>
 
 <br><br>
+<hr>
 <a href='logout.php'>Logout</a>
 
+<?php
+_info_login();
+?>
 </body>
 </html>
 

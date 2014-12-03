@@ -62,10 +62,10 @@ $result = $dblink->query($sql);
 
 // Jika bukan object dan boolean TRUE, atau number lebih dari 0
 if ( !is_object($result) && $result  ) {
-    echo "OK<br>";
+    echo "Data berjaya dikemaskini!!<br>";
     echo "<script>setTimeout( function() { self.location.href = 'view.php'; }, 1000 ); </script>";
 } else {
-    echo "Tak OK<br>";
+    echo "<b style='color:red;'>Data tidak berjaya dikemaskini!!</b><br>";
 }
 
 

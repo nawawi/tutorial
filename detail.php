@@ -54,6 +54,10 @@ td {
 </style>
 </head>
 <body>
+<h1>Details: User Database</h1>
+<hr>
+<a href='view.php'>Home</a> / <a href='addnew.php'>Add New</a> / <a href='edit.php?id=<?echo $_GET['id'];?>'>Edit</a> / <a href='delete.php?id=<?echo $_GET['id'];?>'>Delete</a>
+<br><br>
 
 <?php 
 if ( !is_object($result) ) {
@@ -94,11 +98,16 @@ if ( !is_object($result) ) {
 }
 
 ?>
-<br>
-<a href='view.php'>Home</a> / <a href='addnew.php'>Add New</a> / <a href='edit.php?id=<?echo $_GET['id'];?>'>Edit</a> / <a href='delete.php?id=<?echo $_GET['id'];?>'>Delete</a>
+
+
 
 <br><br>
+<hr>
 <a href='logout.php'>Logout</a>
+
+<?php
+_info_login();
+?>
 
 </body>
 </html>

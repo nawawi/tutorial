@@ -108,6 +108,8 @@ td {
 </style>
 </head>
 <body>
+<h1>Home: User Database</h1>
+<hr>
 
 <!--- display data -->
 <a href='addnew.php'>Add New</a><br><br>
@@ -164,13 +166,14 @@ if ( is_object($result) ) {
         echo "<a href='{$pagging_next}'>Next</a>&nbsp;&nbsp;";
         echo "Page ".( $page_record+1 )." of {$page_total}&nbsp;&nbsp;";
         echo "<a href='{$pagging_prev}'>Previous</a>&nbsp;&nbsp;";
-        echo "<a href='{$pagging_last}'>Last</a>";
+        echo "<a href='{$pagging_last}'>Last</a><br><br>";
     }
 }
 ?>
 </table>
 <!--- / end display data -->
 <br><br>
+<hr>
 <a href='logout.php'>Logout</a>
 
 <?php

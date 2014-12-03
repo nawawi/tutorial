@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Database</title>
+<title>User Database</title>
 <style>
 table {
     width: 100%;

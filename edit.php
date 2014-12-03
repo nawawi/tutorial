@@ -36,7 +36,7 @@ $result = $dblink->query("select * from users where id='{$_GET['id']}' ");
 
 <html>
 <head>
-<title>Database</title>
+<title>User Database</title>
 <style>
 table {
     width: 100%;
@@ -54,6 +54,10 @@ td {
 </style>
 </head>
 <body>
+<h1>Edit: User Database</h1>
+<hr>
+<a href='view.php'>Home</a> / <a href='addnew.php'>Add New</a> / <a href='delete.php?id=<?echo $_GET['id'];?>'>Delete</a>
+<br><br>
 
 <?php 
 if ( !is_object($result) ) {
@@ -100,16 +104,19 @@ if ( !is_object($result) ) {
     echo "</tr>";
 
     echo "</table>";
-    echo "<input type='submit' value='Update'>";
+    echo "<input type='submit' value='Update'> <input type='button' value='Cancel' onclick=\"self.location.href='view.php';\">";
     echo "</form>";
 }
 
 ?>
-<br>
-<a href='view.php'>Home</a> / <a href='addnew.php'>Add New</a> / <a href='delete.php?id=<?echo $_GET['id'];?>'>Delete</a>
 
 <br><br>
+<hr>
 <a href='logout.php'>Logout</a>
+
+<?php
+_info_login();
+?>
 </body>
 </html>
 
