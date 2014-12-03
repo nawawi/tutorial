@@ -14,6 +14,10 @@ $session_path = "C:/xampp/htdocs/test/sessions";
 // rujukan.
 $session_cookie_secure = false;
 
+// enable output buffering
+if (@ini_get('output_buffering') == 0) {
+	@ini_set('output_buffering',4096);
+}
 
 // function untuk menetapkan setting untuk session
 function _session_init() {
@@ -40,7 +44,7 @@ function _session_init() {
 // function untuk memulakan session. Akan digunakan pada setiap page.
 function _session_start() {
     _session_init();
-    session_start();
+    @session_start();
 }
 
 // function untuk menyimpan data login kedalan session
