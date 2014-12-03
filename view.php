@@ -41,7 +41,7 @@ $result = $dblink->query($sql);
 $page_pagging = false;
 $rowpage = 5;
 $data_total  = $result->num_rows;
-$page_first = $page_next = $page_prev = $page_last = 0;
+$page_record = $page_total = $page_first = $page_next = $page_prev = $page_last = 0;
 
 if ( is_object($result) && $data_total > $rowpage ) { 
     $page_record = ( isset($_GET['page_record']) ? $_GET['page_record'] : 0 );
@@ -49,16 +49,13 @@ if ( is_object($result) && $data_total > $rowpage ) {
     $start_row = @($page_record * $max_row);
 
     $sql .= " LIMIT $start_row, $max_row";
+
     $result1 = $dblink->query($sql);
     $result = $result1;
 
-    if ( isset($_GET['page_total']) ) {
-        $page_total = @ceil( $data_total / $max_row );
-    } else {
-         $page_total = 1;
-    }
+    $page_total = @ceil( $data_total / $max_row );
 
-    if ( $page_total >= 1 ) {
+    if ( $page_total > 1 ) {
         $page_pagging = true;
 
         if ( $page_record > 0 ) {
@@ -67,8 +64,12 @@ if ( is_object($result) && $data_total > $rowpage ) {
         }
 
         if ( $page_record < $page_total ) {
-            $page_next = min($page_total - 1, $page_record + 1);
-            $page_last = ( $page_total - 1 );
+            $page_next = min($page_total, $page_record + 1);
+            $page_last = $page_total - 1;
+        }
+
+        if ( $page_next >= $page_total ) {
+            $page_next -= 1;
         }
     }
     $pagging = "view.php?";
@@ -161,6 +162,7 @@ if ( is_object($result) ) {
     if ( $page_pagging ) {
         echo "<a href='{$pagging_first}'>First</a>&nbsp;&nbsp;";
         echo "<a href='{$pagging_next}'>Next</a>&nbsp;&nbsp;";
+        echo "Page ".( $page_record+1 )." of {$page_total}&nbsp;&nbsp;";
         echo "<a href='{$pagging_prev}'>Previous</a>&nbsp;&nbsp;";
         echo "<a href='{$pagging_last}'>Last</a>";
     }
