@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+th {
+    font-weight: bold;
+    text-align: left;
+    border: 1px solid black;
+}
+td {
+    text-align: left;
+    border: 1px solid black;
+}
