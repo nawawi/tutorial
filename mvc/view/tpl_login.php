@@ -26,7 +26,7 @@
 </form>
 
 <br>
-<a href='index.php'>Home</a>
+<a href='<?php echo $this->baseurl;?>/'>Home</a>
 </body>
 </html>
 

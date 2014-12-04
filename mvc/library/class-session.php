@@ -8,8 +8,8 @@ class session {
     public $session_name = "TEST123";
 
     // File untuk simpan session. Jika tidak mahu gunakan default.
-    public $session_path = "C:/xampp/htdocs/test/sessions";
-    //public $session_path = "/tmp/sessions";
+    //public $session_path = "C:/xampp/htdocs/test/sessions";
+    public $session_path = "/tmp/sessions";
 
     // Cookie hanya akan set untuk https sahaja. Tidak digunakan dalam banyak kes, cuma sebagai
     // rujukan.
