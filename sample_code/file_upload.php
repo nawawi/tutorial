@@ -1,7 +1,37 @@
 <?php
 // upload single atau multiple files
 
+function _check_upload_filename($file, $max_file_length = 260) {
+	$valid_chars_regex = '.A-Z0-9_ !@#$%^&()+={}\[\]\',~`-';
+	$file_name = preg_replace('/[^'.$valid_chars_regex.']|\.+$/i', "", basename($file) );
+	if ( strlen($file_name) == 0 || strlen($file_name) > $max_file_length ) {
+		return false;
+	}
+	return true;
+}
+
+function _get_upload_max_size() {
+	$post_max_size = ini_get('post_max_size');
+	$unit = strtoupper(substr($post_max_size, -1));
+	$multiplier = ($unit == 'M' ? 1048576 : ($unit == 'K' ? 1024 : ($unit == 'G' ? 1073741824 : 1)));
+	$size = $multiplier*(int)$post_max_size;
+	return $size;
+}
+
+function _check_upload_post_max_size() {
+	$size = _get_upload_max_size();
+	if ((int)$_SERVER['CONTENT_LENGTH'] > $size) {
+		return false;
+	}
+	return true;
+}
+
 if ( isset($_FILES) && !empty($_FILES) ) {
+    if ( !_check_upload_post_max_size() ) {
+        echo "File terlalu besar!<br>";
+        exit;
+    }
+
     foreach( $_FILES as $name => $next ) {
         $ok = true;
 
@@ -10,6 +40,11 @@ if ( isset($_FILES) && !empty($_FILES) ) {
 
         // nama file yang original. nama file ketika upload
         $file_ori = $_FILES[$name]['name'];
+
+        if ( !_check_upload_filename($file_ori) ) {
+            echo "File tidak dibenarkan<br>";
+            exit;
+        }
 
         // uload directory: tempat simpan file yang diupload
         $dest_dir = "C:/xampp/htdocs/test/upload";
