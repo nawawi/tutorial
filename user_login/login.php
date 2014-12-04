@@ -1,3 +1,6 @@
+<?php
+include_once("./check-security.php");
+?>
 <html>
 <head>
 <title>User Database</title>

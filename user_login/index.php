@@ -1,4 +1,5 @@
 <?php
+include_once("./check-security.php");
 include_once("./functions-session.php");
 if ( !_session_check() ) {
     echo "Sila <a href='login.php'>Login</a>!!!<br>";

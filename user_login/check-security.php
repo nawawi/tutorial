@@ -52,4 +52,8 @@ if ( !empty($_COOKIE) ) {
     $_COOKIE = array_map_recursive('_remove_sql_inject', $_COOKIE);
 }
 
+if ( !empty($_SESSION) ) {
+    $_SESSION = array_map_recursive('_remove_sql_inject', $_SESSION);
+}
+
 

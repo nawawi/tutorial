@@ -1,4 +1,11 @@
 <?php
+include_once("./check-security.php");
+include_once("./functions-session.php");
+if ( !_session_check() ) {
+    echo "Sila <a href='login.php'>Login</a>!!!<br>";
+    exit;
+}
+
 // check parameter
 if ( !isset($_POST['id']) || $_POST['id'] == '' || (int)$_POST['id'] <= 0 ) {
     echo "Salah parameter!!";
@@ -48,8 +55,7 @@ if ( is_object($result) && $result->num_rows > 0 ) {
 }
 
 // Execute query untuk update, akan return boolean TRUE or FALSE
-$login = htmlspecialchars($_POST['login'], ENT_QUOTES, 'UTF-8', false);
-$sql = "update users set login='{$login}',fullname='{$_POST['fullname']}'";
+$sql = "update users set login='{$_POST['login']}',fullname='{$_POST['fullname']}'";
 
 // jika password tidak empty, update password
 if ( isset($_POST['password']) && $_POST['password'] != '' ) {

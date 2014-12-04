@@ -1,4 +1,5 @@
 <?php
+include_once("./check-security.php");
 include_once("./functions-session.php");
 
 // check parameter
