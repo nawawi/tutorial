@@ -37,6 +37,7 @@ class handle extends db {
             ob_start();
             include_once($file);
             $content = ob_get_contents();
+            $content = preg_replace("/@@BASEURL@@/", $this->baseurl, $content );
             ob_end_clean();
         }
         exit($content);

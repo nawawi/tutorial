@@ -1,11 +1,11 @@
 <html>
 <head>
 <title>User Database</title>
-<link href="asset/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="@@BASEURL@@/asset/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <h1>Login Page</h1>
-<form action='<?php echo $this->baseurl;?>/users/login' method='post'>
+<form action='@@BASEURL@@/users/login' method='post'>
 <table>
 <tr>
 <th>Login</th>
@@ -26,7 +26,7 @@
 </form>
 
 <br>
-<a href='<?php echo $this->baseurl;?>/'>Home</a>
+<a href='@@BASEURL@@/'>Home</a>
 </body>
 </html>
 
