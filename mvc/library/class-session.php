@@ -32,7 +32,7 @@ class session {
             ini_set('session.gc_probability', 1);
         }
 
-        if ( $GLOBALS['session_cookie_secure'] ) {
+        if ( $this->session_cookie_secure ) {
             ini_set('session.cookie_secure','1');
         }
     }
