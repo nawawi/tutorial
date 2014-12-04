@@ -86,7 +86,7 @@ if ( !_session_check() ) {
     echo "Set session tidak berjaya!!!<br>";
 } else {
     echo "Set session berjaya!!!<br>";
-    echo "<script>setTimeout( function() { self.location.href = 'view.php'; }, 1000 ); </script>";
+    echo "<script>setTimeout( function() { self.location.href = 'index.php'; }, 1000 ); </script>";
     //echo "<pre>";
     //$data = _session_data();
     //print_r($data);

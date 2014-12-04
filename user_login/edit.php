@@ -56,7 +56,7 @@ td {
 <body>
 <h1>Edit: User Database</h1>
 <hr>
-<a href='view.php'>Home</a> / <a href='addnew.php'>Add New</a> / <a href='delete.php?id=<?echo $_GET['id'];?>'>Delete</a>
+<a href='index.php'>Home</a> / <a href='addnew.php'>Add New</a> / <a href='delete.php?id=<?echo $_GET['id'];?>'>Delete</a>
 <br><br>
 
 <?php 
@@ -104,7 +104,7 @@ if ( !is_object($result) ) {
     echo "</tr>";
 
     echo "</table>";
-    echo "<input type='submit' value='Update'> <input type='button' value='Cancel' onclick=\"self.location.href='view.php';\">";
+    echo "<input type='submit' value='Update'> <input type='button' value='Cancel' onclick=\"self.location.href='index.php';\">";
     echo "</form>";
 }
 

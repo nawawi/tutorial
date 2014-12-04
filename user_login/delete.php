@@ -37,7 +37,7 @@ $result = $dblink->query($sql);
 // Jika bukan object dan boolean TRUE, atau number lebih dari 0
 if ( !is_object($result) && $result  ) {
     echo "Data berjaya dipadam!!<br>";
-    echo "<script>setTimeout( function() { self.location.href = 'view.php'; }, 1000 ); </script>";
+    echo "<script>setTimeout( function() { self.location.href = 'index.php'; }, 1000 ); </script>";
 } else {
     echo "<b style='color:red;'>Data tidak berjaya dipadam!!</b><br>";
 }

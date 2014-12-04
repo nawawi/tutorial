@@ -40,7 +40,7 @@ td {
 </form>
 
 <br>
-<a href='view.php'>Home</a>
+<a href='index.php'>Home</a>
 </body>
 </html>
 

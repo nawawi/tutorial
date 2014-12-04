@@ -28,7 +28,7 @@ td {
 <body>
 <h1>Add New: User Database</h1>
 <hr>
-<a href='view.php'>Home</a>
+<a href='index.php'>Home</a>
 <br><br>
 
 <form action='save.php' method='post'>
@@ -55,7 +55,7 @@ td {
 </tr>
 
 </table>
-<input type='submit' value='Save'> <input type='button' value='Cancel' onclick="self.location.href='view.php';">
+<input type='submit' value='Save'> <input type='button' value='Cancel' onclick="self.location.href='index.php';">
 </form>
 
 

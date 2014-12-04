@@ -56,7 +56,7 @@ td {
 <body>
 <h1>Details: User Database</h1>
 <hr>
-<a href='view.php'>Home</a> / <a href='addnew.php'>Add New</a> / <a href='edit.php?id=<?echo $_GET['id'];?>'>Edit</a> / <a href='delete.php?id=<?echo $_GET['id'];?>'>Delete</a>
+<a href='index.php'>Home</a> / <a href='addnew.php'>Add New</a> / <a href='edit.php?id=<?echo $_GET['id'];?>'>Edit</a> / <a href='delete.php?id=<?echo $_GET['id'];?>'>Delete</a>
 <br><br>
 
 <?php 

@@ -72,7 +72,7 @@ if ( is_object($result) && $data_total > $rowpage ) {
             $page_next -= 1;
         }
     }
-    $pagging = "view.php?";
+    $pagging = "index.php?";
     if ( isset($_GET['search']) ) {
         $pagging .= "search={$_GET['search']}";
     }
@@ -115,7 +115,7 @@ td {
 <a href='addnew.php'>Add New</a><br><br>
 
 <!--- kotak search -->
-<form action='view.php' method='get'>
+<form action='index.php' method='get'>
 <select name="opt">
 <?php
     foreach( array("login","fullname") as $opt ) {
@@ -125,7 +125,7 @@ td {
 ?>
 </select>
 <input type="text" name="search" value="<?php echo (isset($_GET['search']) ? $_GET['search'] : ""); ?>"> 
-<input type="submit" value="search"> <input type="button" value="Clear" onclick="location.href='view.php';">
+<input type="submit" value="search"> <input type="button" value="Clear" onclick="location.href='index.php';">
 </form>
 <!--- / end kotak search -->
 
